@@ -1,0 +1,31 @@
+@page
+@model IndexModel
+
+<h2>Búsqueda de Declaraciones</h2>
+<form method="get">
+    <input type="date" name="fecha" required />
+    <button type="submit">Buscar</button>
+</form>
+
+@if (Model.Declaraciones != null && Model.Declaraciones.Count > 0)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Número Transacción</th>
+                <th>Fecha Hora</th>
+                <th>Detalles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var declaracion in Model.Declaraciones)
+            {
+                <tr>
+                    <td>@declaracion.NumeroTransaccion</td>
+                    <td>@declaracion.FechaHoraTrn</td>
+                    <td><a href="/Detalles?id=@declaracion.Id">Ver Detalles</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
